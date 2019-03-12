@@ -1,31 +1,49 @@
 import java.util.Arrays;
 public class Quick {
-	public static void partition(int nth,int[]ary) {
 
-	}
-	public static int helper(int[]ary) {
-		int chosen=(int)(Math.random()*ary.length);
-		int pivot=ary[chosen];
-		int up=0;
-		int down=ary.length-1;
-		while(up!=down) {
-			for(int i=0;i<ary.length;i++) {
-				if(ary[i]>pivot) {
-					up=i;
+	public static int partition(int[]ary){
+	//	int chosen=(int)(Math.random()*ary.length);
+		int pivotIndex=3;
+		int pivot=ary[pivotIndex];
+		int start=0;
+		int end=ary.length-1;
+	  boolean dumb=true;
+		while(dumb){
+			System.out.println(Arrays.toString(ary));
+			for(int i=start;i<=end;i++){
+				if(i==end){
+					int store=ary[i];
+					ary[i]=pivot;
+					ary[start]=store;
+					return i;
+				}
+				else if(ary[i]>=pivot){
+					start=i;
 					break;
 				}
 			}
-			for(int i=ary.length-1;i>=0;i--) {
-				if(ary[i]<pivot) {
-					down=i;
-					break;
+			for(int i=end;i>=start;i--){
+				if(i==start){
+					int store=ary[i];
+					ary[i]=pivot;
+					ary[pivotIndex]=store;
+					return i;
 				}
+			 else if(ary[i]<pivot){
+				 end=i;
+				 break;
+			 }
 			}
-			int dummy=ary[up];
-			ary[up]=ary[down];
-			ary[down]=dummy;
+			int store=ary[start];
+			ary[start]=ary[end];
+			ary[end]=store;
 		}
-		return up;
+		return -1;
+	}
+	public static void main(String[]args){
+		int[]ary={6,3,2,8,-1};
+		System.out.println(partition(ary));
+		System.out.println(Arrays.toString(ary));
 	}
 
 }
