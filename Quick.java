@@ -7,32 +7,35 @@ public class Quick {
 		int pivot=ary[pivotIndex];
 		int start=0;
 		int end=ary.length-1;
+		int dummy=ary[0];
+		ary[0]=pivot;
+		ary[pivotIndex]=dummy;
 	  boolean dumb=true;
 		while(dumb){
 			System.out.println(Arrays.toString(ary));
-			for(int i=start;i<=end;i++){
-				if(i==end){
-					int store=ary[i];
-					ary[i]=pivot;
-					ary[start]=store;
-					return i;
-				}
-				else if(ary[i]>=pivot){
-					start=i;
-					break;
-				}
-			}
 			for(int i=end;i>=start;i--){
 				if(i==start){
 					int store=ary[i];
 					ary[i]=pivot;
-					ary[pivotIndex]=store;
+					ary[0]=store;
 					return i;
 				}
 			 else if(ary[i]<pivot){
 				 end=i;
 				 break;
 			 }
+			}
+			for(int i=start;i<=end;i++){
+				if(i==end){
+					int store=ary[i];
+					ary[i]=pivot;
+					ary[0]=store;
+					return i;
+				}
+				 if(ary[i]>pivot){
+					start=i;
+					break;
+				}
 			}
 			int store=ary[start];
 			ary[start]=ary[end];
