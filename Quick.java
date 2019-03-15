@@ -46,7 +46,7 @@ public class Quick {
 		}
 		return -1;
 	}
-	public static int quickSelect(int[]ary,int k){
+	public static int quickselect(int[]ary,int k){
     int start=0;
 		int end=ary.length-1;
 		while (true){
@@ -62,12 +62,22 @@ public class Quick {
 			}
 		}
 	}
+	public static void quicksort(int[]ary,int start ,int end){
+		if(start==end){
+			System.out.println("done");
+		}
+		else {
+	  int pivot=partition(ary,start,end);
+		quicksort(ary,0,pivot-1);
+		quicksort(ary,pivot+1,ary.length);
+	 }
+	}
 
 
 	public static void main(String[]args){
 		int[]ary={6,3,2,8,-1,2,12,3,5,4,9,10};
 		//System.out.println(partition(ary,0,4));
-		System.out.println(quickSelect(ary,8));
+	  quicksort(ary,0,ary.length-1);
 		System.out.println(Arrays.toString(ary));
 	}
 
