@@ -1,14 +1,17 @@
 import java.util.Arrays;
 public class Quick {
 
-	public static int partition(int[]ary){
-	//	int chosen=(int)(Math.random()*ary.length);
-		int pivotIndex=3;
+	public static int partition(int[]ary, int begin,int finish){// index is for testing
+  //  System.out.println(Arrays.toString(ary));
+	//	System.out.println("6 should be at beginning");
+		int chosen=(int)(Math.random()*finish+1-begin)+begin;// switch this with index at next line
+		int pivotIndex=chosen;
+    System.out.println(pivotIndex+"this ispivotindex");
 		int pivot=ary[pivotIndex];
-		int start=0;
-		int end=ary.length-1;
-		int dummy=ary[0];
-		ary[0]=pivot;
+		int start=begin;
+		int end=finish;
+		int dummy=ary[start];
+		ary[start]=pivot;
 		ary[pivotIndex]=dummy;
 	  boolean dumb=true;
 		while(dumb){
@@ -17,7 +20,7 @@ public class Quick {
 				if(i==start){
 					int store=ary[i];
 					ary[i]=pivot;
-					ary[0]=store;
+					ary[begin]=store; // it seems swiching the begin and start caused erro
 					return i;
 				}
 			 else if(ary[i]<pivot){
@@ -29,7 +32,7 @@ public class Quick {
 				if(i==end){
 					int store=ary[i];
 					ary[i]=pivot;
-					ary[0]=store;
+					ary[begin]=store;
 					return i;
 				}
 				 if(ary[i]>pivot){
@@ -43,9 +46,28 @@ public class Quick {
 		}
 		return -1;
 	}
+	public static int quickSelect(int[]ary,int k){
+    int start=0;
+		int end=ary.length-1;
+		while (true){
+		  int compare=partition(ary,start,end);
+			if(compare==k){
+				return ary[k];
+			}
+			else if(compare>k){
+				end=compare;
+			}
+			else if(compare<k){
+				start=compare;
+			}
+		}
+	}
+
+
 	public static void main(String[]args){
-		int[]ary={6,3,2,8,-1};
-		System.out.println(partition(ary));
+		int[]ary={6,3,2,8,-1,2,12,3,5,4,9,10};
+		//System.out.println(partition(ary,0,4));
+		System.out.println(quickSelect(ary,8));
 		System.out.println(Arrays.toString(ary));
 	}
 
