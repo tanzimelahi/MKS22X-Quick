@@ -2,15 +2,10 @@ import java.util.Arrays;
 public class Quick {
 
 	public static int partition(int[]ary, int begin,int finish){// index is for testing
-  //  System.out.println(Arrays.toString(ary));
-	//	System.out.println("6 should be at beginning");
+  // System.out.println(Arrays.toString(ary));
 		int chosen=begin+(int)( Math.random() *(finish-begin+1));// switch this with index at next line
 		int pivotIndex=chosen;
-   // System.out.println(pivotIndex+"this ispivotindex");
-       // if(pivotIndex==2) {
-        //	throw new IllegalArgumentException();
-
-        //}
+       // System.out.println(pivotIndex+"this ispivotindex");
 		int pivot=ary[pivotIndex];
 		int start=begin;
 		int end=finish;
@@ -19,38 +14,50 @@ public class Quick {
 		ary[pivotIndex]=dummy;
 	  boolean dumb=true;
 		while(dumb){
-		    //System.out.println(Arrays.toString(ary));
+		    ///System.out.println(Arrays.toString(ary));
 			for(int i=end;i>=start;i--){
 				if(i==start){
 					int store=ary[i];
 					ary[i]=pivot;
-					ary[begin]=store; // it seems swiching the begin and start caused erro
+					ary[begin]=store; // it seems swiching the begin and start caused error
 					return i;
 				}
 			 else if(ary[i]<pivot){
 				 end=i;
 				 break;
 			 }
+			 else if(ary[i]==pivot) {
+				 int random= (int)(Math.random()*2);
+				 if(random==1) {
+					 end=i;
+					 break;
+				 }
+
+			 }
+
 			}
-			for(int i=start;i<=end;i++){
+			for(int i=start;i<=end;i++){// start+1 change made
 				if(i==end){
 					int store=ary[i];
 					ary[i]=pivot;
 					ary[begin]=store;
 					return i;
 				}
-				 if(ary[i]>pivot){
+				else if(ary[i]>pivot){
 					start=i;
 					break;
 				}
+
+
 			}
 			int store=ary[start];
 			ary[start]=ary[end];
 			ary[end]=store;
+
 		}
 		return -1;
 	}
-	public static int quickSelect(int[]ary,int k){
+	public static int quickselect(int[]ary,int k){
     int start=0;
 		int end=ary.length-1;
 		while (true){
@@ -91,15 +98,5 @@ public class Quick {
 
 
 
-	public static void main(String[]args){
-		int[]ary = {6,8,10,-2,8,8};
-		int[]test=new int[100000000];
-		for(int i=0;i<test.length;i++) {
-			test[i]=8;
-		}
-	    quicksort(test);
-	    System.out.println(Arrays.toString(test));
-
-	}
 
 }
