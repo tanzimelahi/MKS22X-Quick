@@ -62,12 +62,33 @@ public class Quick {
 			}
 		}
 	}
+	public static void quicksortH (int[]ary,int start,int end){
+		int pivot=partition(ary,start,end);
+		while(start!=end){
+			if(pivot==ary.length-1){
+				quicksortH(ary,start,pivot-1);
+			}
+			else if(pivot==0){
+				quicksortH(ary,pivot+1,end);
+			}
+			else{
+			quicksortH(ary,start,pivot-1);
+			quicksortH(ary,pivot+1,end);
+		  }
+			start=end;
+		}
+
+	}
+	public static void quicksort(int[]ary){
+		quicksortH(ary,0,ary.length-1);
+	}
+
 
 
 	public static void main(String[]args){
-		int[]ary={6,3,2,8,-1,2,12,3,5,4,9,10};
+		int[]ary={6,3,2,8};
 		//System.out.println(partition(ary,0,4));
-		System.out.println(quickSelect(ary,8));
+		quicksort(ary);
 		System.out.println(Arrays.toString(ary));
 	}
 
