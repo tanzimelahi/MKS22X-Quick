@@ -73,7 +73,26 @@ public class Quick {
 			}
 		}
 	}
+  public static void insertion(int[]ary,int low,int high){
+    int marker=0;
+    for(int i=low+1;i<high+1;i++){
+      int compare=ary[i];
+      int index=i;
+      for(int j=i-1;j>=low;j--){
+        if (compare<ary[j]){ // switched position here
+          int temp=ary[j];
+          ary[j]=compare;
+          ary[index]=temp;
+          index=j;
+        }
+      }
+    }
+  }
 	public static void quicksortH (int[]ary,int start,int end){
+    if (end-start<3){
+      insertion(ary,start,end);
+    }
+    else{
 		int pivot=partition(ary,start,end);
 		while(start!=end){
 			if(pivot==end){
@@ -89,11 +108,16 @@ public class Quick {
 			//System.out.println("passed through all those");
 			start=end;
 		}
-
+  }
 	}
 	public static void quicksort(int[]ary){
 		quicksortH(ary,0,ary.length-1);
 	}
+  public static void main(String[]args){
+    int[]test={8,323,2323,2,1,0,-1};
+    quicksort(test);
+    System.out.println(Arrays.toString(test));
+  }
 
 
 
