@@ -113,11 +113,7 @@ public class Quick {
 	public static void quicksort(int[]ary){
 		quicksortH(ary,0,ary.length-1);
 	}
-  public static void main(String[]args){
-    int[]test={8,323,2323,2,1,0,-1};
-    quicksort(test);
-    System.out.println(Arrays.toString(test));
-  }
+
 
 
 
